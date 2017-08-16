@@ -4,7 +4,11 @@
 # from : askubuntu.com/questions/9135/how-to-backup-settings-and-list-of-installed-packages
 
 
-BACK_UP_DIR=~/back_up
+python drive.py --pull_backup
+
+tar xzvf back_up.tar.gz
+
+BACK_UP_DIR=./back_up/back_up
 BACK_UP_DIR_PROFILE=$BACK_UP_DIR/profile
 BACK_UP_DIR_PACKAKE=$BACK_UP_DIR/packages
 
