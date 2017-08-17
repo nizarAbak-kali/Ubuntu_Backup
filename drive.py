@@ -75,11 +75,24 @@ def push_new_backup_folder():
 	return new_folder
 
 def pull_backup():
-	back_up = find_folders("back_up")
-	print (back_up)
-	file_list = drive.ListFile({'q': "'root' in parents and trashed=false"}).GetList()
-	for file1 in file_list:
-		print("title:{}, id: {}".format(file1['title'], file1['id'])
+    query = "title = 'back_up.tar.gz'"
+    
+    print("querying  "+query+"...")
+    file_list = drive.ListFile({'q':query}).GetList()
+    
+    file = file_list[0]
+    file.GetContentFile(file['title'])
+    print(file)
+    print('-' * 10)
+    parent_id = file['parents'][0]['id']
+    print(parent_id)
+    title = file['title']
+    file_id = file['id']
+    print ('title: '+title)
+    print ('id: '+ file_id)
+    print('-' * 10)
+
+       
 
 def main():
 	if len(sys.argv) < 2 :
@@ -87,13 +100,17 @@ def main():
 		print ("usage: python drive.py --pull_backup")
 		exit()
 	print (sys.argv[1])
-	login()
 	if sys.argv[1] == "--push_backup":
-		push_new_backup_folder()
+	    login()
+            push_new_backup_folder()
 	if sys.argv[1] == "--pull_backup":
-		pull_backup()
-
-
+            login()
+	    pull_backup()
+        else :
+            print("param Error ! ")
+            print ("usage: python drive.py --push_backup file.tar.gz")
+            print ("usage: python drive.py --pull_backup")
+	    exit()
 if __name__ == "__main__":
 	main()
 	
