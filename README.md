@@ -4,12 +4,12 @@
 
 + To backup
 	
-	./bootstrap.sh backup
-	./backup.sh
+	+ ./bootstrap.sh 
+	+ ./backup.sh
 
 + To reinstall 
-	./bootstrap
-	./reinstall.sh
+	+ ./bootstrap
+	+ ./reinstall.sh
 		
 #### GOOGLE DRIVE API :
 
